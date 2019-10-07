@@ -1,15 +1,14 @@
 <?php
-include 'tools.php';
+session_start();
 
-$nameErr = $emailErr = $mobileErr = $creditCardErr = $expiryErr = "";
 
 if (!empty($_POST)) {
     
     $name = $_POST["name"];
-   if (!preg_match("^[a-zA-Z \-.']{1,100}$",$name)) {
-    $nameErr = "Please match the request format for name";
+   if (!preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)) {
+    $nameErr = "Please match the requested format for name";
    } else {
-       $nameErr = "Name field meets the requirements!";
+       $nameErr = "";
    }  
 
    if (empty($_POST['cust[email]'])) {
@@ -350,7 +349,7 @@ if (!empty($_POST)) {
    Personal details<br><br>    
        
     Name:<br> 
-    <input type="text" name="cust[name]" pattern="^[a-zA-Z \-.']{1,100}$">
+    <input type="text" name="name" pattern="^[a-zA-Z \-.']{1,100}$" value="<?php echo $name;?>">
        <span class="error">* <?php echo $nameErr;?></span>
        <br><br>
        

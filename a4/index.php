@@ -1,22 +1,30 @@
 <?php
 session_start();
 
+$name = $email = "";
+$nameErr = $emailErr = $mobileErr = $creditCardErr = $expiryErr = "";
 
 if (!empty($_POST)) {
     
     $name = $_POST["name"];
-   if (!preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)) {
-    $nameErr = "Please match the requested format for name";
+   if (preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)) {
+    $nameErr = "";
    } else {
-       $nameErr = "";
-   }  
-
-   if (empty($_POST['cust[email]'])) {
-     $emailErr = "Email is required";
+       $nameErr = "Invalid name format, please enter the correct name format";
    }  
     
-   if (empty($_POST['cust[mobile]'])) {
-     $mobileErr = "Mobile is required";
+    $email = $_POST["email"];
+   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+     $emailErr = "";
+   }  else {
+       $emailErr = "Invalid email format, please enter the correct email format";
+   }
+    
+    $mobile = $_POST["mobile"];
+   if (preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)) {
+     $mobileErr = "";
+   } else {
+       $mobileErr = "Invalid mobile format";
    } 
     
    if (empty($_POST['cust[card]'])) {
@@ -354,12 +362,12 @@ if (!empty($_POST)) {
        <br><br>
        
     Email:<br>
-    <input type="email" name="cust[email]">
+    <input type="text" name="email">
        <span class="error">* <?php echo $emailErr;?></span>
        <br><br>
        
     Mobile:<br>
-    <input type="tel" name="cust[mobile]" pattern="^(\(04\)|04|\+614)( ?\d){8}$">
+    <input type="text" name="mobile" pattern="^(\(04\)|04|\+614)( ?\d){8}$">
        <span class="error">* <?php echo $mobileErr;?></span>
        <br><br>  
     

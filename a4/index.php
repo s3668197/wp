@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$name = $email = "";
+$name = $email = $mobile = "";
 $nameErr = $emailErr = $mobileErr = $creditCardErr = $expiryErr = "";
 
 if (!empty($_POST)) {
@@ -24,12 +24,15 @@ if (!empty($_POST)) {
    if (preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)) {
      $mobileErr = "";
    } else {
-       $mobileErr = "Invalid mobile format";
+       $mobileErr = "Invalid mobile format, please enter the correct mobile format";
    } 
     
-   if (empty($_POST['cust[card]'])) {
-     $creditCardErr = "Card number is required";
-   }  
+    $card = $_POST["card"];
+   if (preg_match("/^[0-9]{14,19}$/",$card)) {
+     $creditCardErr = "";
+   } else {
+       $creditCardErr = "Invalid card number, please enter the correct card format";
+   } 
     
    if (empty($_POST['cust[expiry]'])) {
      $expiryErr = "Expiry is required";
@@ -240,7 +243,7 @@ if (!empty($_POST)) {
    
    <section class="section" id="booking">
 
-   <form action="https://titan.csit.rmit.edu.au/~s3707846/wp/a4/index.php" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" onsubmit="return checkingFunction();" autocomplete="off">  
+   <form action="https://titan.csit.rmit.edu.au/~s3707846/wp/a4/index.php" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" onsubmit="return checkingFunction();" autocomplete="off" novalidate>  
    
        
    <p>Movie Title - Day - Time</p><br><br> 
@@ -372,7 +375,7 @@ if (!empty($_POST)) {
        <br><br>  
     
     Credit Card:<br>
-    <input type="text" name="cust[card]" pattern="^[0-9]{14,19}$">
+    <input type="text" name="card" pattern="^[0-9]{14,19}$">
        <span class="error">* <?php echo $creditCardErr;?></span>
        <br><br> 
        

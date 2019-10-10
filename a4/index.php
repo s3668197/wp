@@ -1,44 +1,45 @@
 <?php
 session_start();
-
-$name = $email = $mobile = "";
+require_once("tools.php");
+$name = $email = $mobile = $card = $expiry = "";
 $nameErr = $emailErr = $mobileErr = $creditCardErr = $expiryErr = "";
 
 if (!empty($_POST)) {
-    
-    $name = $_POST["name"];
+  preShow($_POST);  
+    $name = $_POST["cust"]["name"];
    if (preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)) {
-    $nameErr = "";
+    $nameErr = "";  
    } else {
        $nameErr = "Invalid name format, please enter the correct name format";
    }  
     
-    $email = $_POST["email"];
+    $email = $_POST["cust"]["email"];
    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
      $emailErr = "";
    }  else {
        $emailErr = "Invalid email format, please enter the correct email format";
    }
     
-    $mobile = $_POST["mobile"];
+    $mobile = $_POST["cust"]["mobile"];
    if (preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)) {
      $mobileErr = "";
    } else {
        $mobileErr = "Invalid mobile format, please enter the correct mobile format";
    } 
     
-    $card = $_POST["card"];
+    $card = $_POST["cust"]["card"];
    if (preg_match("/^[0-9]{14,19}$/",$card)) {
      $creditCardErr = "";
    } else {
        $creditCardErr = "Invalid card number, please enter the correct card format";
    } 
-    
-   if (empty($_POST['cust[expiry]'])) {
+    $expiry = $_POST["cust"]["expiry"];
+   if (true) {                                                                                         //if (empty($_POST["cust"]["expiry"])) {
      $expiryErr = "Expiry is required";
    } 
       
 }
+    
 ?>
 
 <script>  
@@ -360,35 +361,47 @@ if (!empty($_POST)) {
    Personal details<br><br>    
        
     Name:<br> 
-    <input type="text" name="name" pattern="^[a-zA-Z \-.']{1,100}$" value="<?php echo $name;?>">
+    <input type="text" name="cust[name]" pattern="^[a-zA-Z \-.']{1,100}$">
        <span class="error">* <?php echo $nameErr;?></span>
        <br><br>
        
     Email:<br>
-    <input type="text" name="email">
-       <span class="error">* <?php echo $emailErr;?></span>
-       <br><br>
+    <input type="text" name="cust[email]" value="<?= $email ?>">
+     
+       
+       
+    <span class="error">* <?php echo $emailErr;?></span>
+    <br><br>
        
     Mobile:<br>
-    <input type="text" name="mobile" pattern="^(\(04\)|04|\+614)( ?\d){8}$">
+    <input type="text" name="cust[mobile]" pattern="^(\(04\)|04|\+614)( ?\d){8}$" value="<?php if (!preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)) {
+    
+    echo $mobile; }
+           
+    else { echo "";} ?>">
+ 
        <span class="error">* <?php echo $mobileErr;?></span>
        <br><br>  
     
     Credit Card:<br>
-    <input type="text" name="card" pattern="^[0-9]{14,19}$">
+    <input type="text" name="cust[card]" pattern="^[0-9]{14,19}$">
        <span class="error">* <?php echo $creditCardErr;?></span>
        <br><br> 
        
     Expiry:<br>
-    <input type="month" id="exp" name="cust[expiry]">
+    <input type="month" id="exp" name="cust[expiry]" value="<?= $expiry ?>">
        <span class="error">* <?php echo $expiryErr;?></span>
        <br><br> 
 
     <input type="submit" name="order" value="Order"><br><br>   
-         
+            
        
-   </form>     
-   </section>        
+   </form> 
+       
+   
+       
+   </section>
+           
     </main>
                
 <script>

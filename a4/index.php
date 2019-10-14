@@ -1,50 +1,11 @@
 <?php
 session_start();
 require_once("tools.php");
-$name = $email = $mobile = $card = $expiry = "";
-$nameErr = $emailErr = $mobileErr = $creditCardErr = $expiryErr = "";
-
-if (!empty($_POST)) {
     
     
   preShow($_POST);
     
   preShow($_SESSION);    
-    
-    $errorCounter = 0;
-    
-    $name = $_POST["cust"]["name"];
-   if (preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)) {
-    $nameErr = "";  
-   } else {
-       $nameErr = "Invalid name format, please enter the correct name format";
-       $errorCounter++;
-   }  
-    
-    $email = $_POST["cust"]["email"];
-   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-     $emailErr = "";
-   }  else {
-       $emailErr = "Invalid email format, please enter the correct email format";
-       $errorCounter++;
-       
-   }
-    
-    $mobile = $_POST["cust"]["mobile"];
-   if (preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)) {
-     $mobileErr = "";
-   } else {
-       $mobileErr = "Invalid mobile format, please enter the correct mobile format";
-       $errorCounter++;
-   } 
-    
-    $card = $_POST["cust"]["card"];
-   if (preg_match("/^[0-9]{14,19}$/",$card)) {
-     $creditCardErr = "";
-   } else {
-       $creditCardErr = "Invalid card number, please enter the correct card format";
-       $errorCounter++;
-   }
     
     
     echo "The error count is $errorCounter \n"; 
@@ -53,10 +14,9 @@ if (!empty($_POST)) {
     }
     
     else {
-        echo "Error counter is greater than 0, so no POST data has been added to the SESSION";
+        echo "no POST data has been added to the SESSION";
     }
     
-}
     
 ?>
 
@@ -262,7 +222,7 @@ if (!empty($_POST)) {
    
    <section class="section" id="booking">
 
-   <form action="https://titan.csit.rmit.edu.au/~s3707846/wp/a4/index.php" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" onsubmit="return checkingFunction();" autocomplete="off" novalidate>  
+   <form action="https://titan.csit.rmit.edu.au/~s3707846/wp/a4/index.php" method="post" onsubmit="return checkingFunction();" autocomplete="off" novalidate>  
    
        
    <p>Movie Title - Day - Time</p><br><br> 
@@ -284,8 +244,8 @@ if (!empty($_POST)) {
   <option value="8">8</option>
   <option value="9">9</option>
   <option value="10">10</option>
-       
-  </select><br><br>
+    
+  </select><span><?php echo $standardAdultErr; ?> </span><br><br> 
    
    <label>Concession</label>
     <select name="seats[STP]" id='seats-STP'>   
@@ -302,7 +262,7 @@ if (!empty($_POST)) {
   <option value="9">9</option>
   <option value="10">10</option><br>   
        
-    </select><br><br>     
+  </select><span><?php echo $standardConcessionErr; ?> </span><br><br>     
         
     <label>Child</label>
     <select name="seats[STC]" id='seats-STC'>   
@@ -319,7 +279,7 @@ if (!empty($_POST)) {
   <option value="9">9</option>
   <option value="10">10</option><br>   
        
-    </select><br><br><br>   
+    </select><span><?php echo $standardChildErr; ?> </span><br><br><br>   
        
        
      First class<br><br>  
@@ -339,7 +299,7 @@ if (!empty($_POST)) {
   <option value="9">9</option>
   <option value="10">10</option>
        
-  </select><br><br>     
+  </select><span><?php echo $firstClassAdultErr; ?> </span><br><br>     
        
    <label>Concession</label>
     <select name="seats[FCP]" id='seats-FCP'>   
@@ -356,7 +316,7 @@ if (!empty($_POST)) {
   <option value="9">9</option>
   <option value="10">10</option><br>   
        
-    </select><br><br>     
+    </select><span><?php echo $firstClassConcessionErr; ?> </span><br><br>     
        
     <label>Child</label>
     <select name="seats[FCC]" id='seats-FCC'>   
@@ -373,41 +333,31 @@ if (!empty($_POST)) {
   <option value="9">9</option>
   <option value="10">10</option><br>   
        
-    </select><br><br><br>
+    </select><span><?php echo $firstClassChildErr; ?> </span><br><br><br>
              
        
    Personal details<br><br>    
        
     Name:<br> 
     <input type="text" name="cust[name]" pattern="^[a-zA-Z \-.']{1,100}$">
-       <span style="color:red"><?php echo $nameErr; ?> </span>
+       <span><?php echo $nameErr; ?> </span>
        <br><br>
        
     Email:<br>
-    <input type="text" name="cust[email]" value="<?php if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    
-    echo $email; }
-                                                 
-     else  { echo "";} ?>">                                         
-        
-       
-       
-    <span style="color:red"><?php echo $emailErr; ?> </span>
+    <input type="text" name="cust[email]" value=" <?php echo $email; ?>">                                         
+          
+       <span><?php echo $emailErr; ?> </span>
     <br><br>
        
     Mobile:<br>
-    <input type="text" name="cust[mobile]" pattern="^(\(04\)|04|\+614)( ?\d){8}$" value="<?php if (!preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)) {
-    
-    echo $mobile; }
-           
-    else { echo "";} ?>">
+    <input type="text" name="cust[mobile]" pattern="^(\(04\)|04|\+614)( ?\d){8}$" value=" <?php echo $mobile; ?>">
  
-       <span style="color:red"><?php echo $mobileErr; ?> </span>
+       <span><?php echo $mobileErr; ?> </span>
        <br><br>  
     
     Credit Card:<br>
     <input type="text" name="cust[card]" pattern="^[0-9]{14,19}$">
-       <span style="color:red"><?php echo $creditCardErr; ?> </span>
+       <span><?php echo $creditCardErr; ?> </span>
        <br><br> 
        
     Expiry:<br>

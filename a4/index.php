@@ -1,24 +1,20 @@
 <?php
 session_start();
 require_once("tools.php");
-    
-    
-  preShow($_POST);
-    
-  preShow($_SESSION);    
-    
-    
-    echo "The error count is $errorCounter \n"; 
-    if ($errorCounter == 0) {
+ 
+
+    if (count($_POST) > 0) {
+    if ($errorCounter < 2) {
         $_SESSION = $_POST;
+       header('Location: receipt.php');
+      
     }
-    
+    }
     else {
-        echo "no POST data has been added to the SESSION";
-    }
-    
-    
+        echo "input data not valid";
+    }    
 ?>
+
 
 <script>  
       var today = new Date();
@@ -26,6 +22,8 @@ require_once("tools.php");
           document.getElementById('exp').min = today.getFullYear()+'-'+today.getMonth()+1;
       }
      </script>
+
+
 <!DOCTYPE html>
 <html lang='en'>
   <head>
@@ -365,13 +363,10 @@ require_once("tools.php");
        
        <br><br> 
 
-    <input type="submit" name="order" value="Order"><br><br>   
-            
-       
+    <input type="submit" name="order" value="Order"><br><br>
+           
    </form> 
-       
-   
-       
+        
    </section>
            
     </main>

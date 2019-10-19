@@ -2,17 +2,33 @@
 session_start();
 require_once("tools.php");
  
-
+    preShow($_SESSION);
     if (count($_POST) > 0) {
-    if ($errorCounter < 2) {
+    if ($errorCounter < 2 && $ticketCounter > 0) {
         $_SESSION = $_POST;
-       header('Location: receipt.php');
-      
+        
+       $now = date('d/m h:i');
+        $total = "total";
+            $cells = array_merge(
+        [$now],
+        $_SESSION['cust'],
+        $_SESSION['seats'],
+         [$total]
+         );
+        
+        $fp = fopen("bookings.txt", "a");
+        flock($fp, LOCK_EX);
+        fputcsv($fp, $cells, "\t");
+        flock($fp, LOCK_UN);
+        fclose($fp);
+        
+        header('Location: https://titan.csit.rmit.edu.au/~s3707846/wp/a4/receipt.php');
+        
+        die();
+        
     }
     }
-    else {
-        echo "input data not valid";
-    }    
+   
 ?>
 
 

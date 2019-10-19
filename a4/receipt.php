@@ -1,22 +1,6 @@
 <?php
-session_start();
+
 require_once("tools.php");
-
-preShow($_SESSION);
-
-echo "<h1>RECEIPT</h1><br>";
-
-
-echo "<p>Lunardo</p>";
-echo "<p>123 Batman Street</p>";
-echo "<p>Melbourne,Victoria,3000</p>";
-echo "<p>Contact: 0412 345 678</p>";
-echo "<p>Email: lunardocinemas@hotmail.com</p><br><br>";
-
-
-echo "<h2>CUSTOMER DETAILS</h2><br>";
-
-
 
 $receivedname = $_SESSION["cust"]["name"];
 $receivedemail = $_SESSION["cust"]["email"];
@@ -37,14 +21,29 @@ $totalForFirstClassConcession = number_format((float)$fcpQuantity*22.50, 2, '.',
 $totalForFirstClassChild = number_format((float)$fccQuantity*21.00, 2, '.', '');
 $subtotal = number_format((float)$totalForStandardAdult + $totalForStandardConcession + $totalForStandardChild + $totalForFirstClassAdult + $totalForFirstClassConcession + $totalForFirstClassChild, 2, '.', '');
 
-echo "<p>Name: $receivedname </p>";
-echo "<p>Email: $receivedemail </p>";
-echo "<p>Mobile: $receivedmobile </p><br><br><br>";
-
+$GST = number_format((float)$subtotal/11, 2, '.', '');
+$TOTALPRICE = number_format((float)$subtotal+$GST, 2, '.', '');
 ?>
 
 <html>
 <body>
+    
+<h1>RECEIPT</h1><br>
+    
+<p>Lunardo</p>
+<p>123 Batman Street</p>
+<p>Melbourne,Victoria,3000</p>
+<p>Contact: 0412 345 678</p> 
+<p>Email: lunardocinemas@hotmail.com</p><br><br>
+
+
+   
+<h2>CUSTOMER DETAILS</h2><br>   
+    
+<p>Name: <?php echo $receivedname; ?> </p>
+<p>Email: <?php echo $receivedemail; ?> </p>  
+<p>Mobile: <?php echo $receivedmobile; ?> </p><br><br><br>
+    
     
 <style>
     table, th, td {
@@ -101,6 +100,18 @@ echo "<p>Mobile: $receivedmobile </p><br><br><br>";
     <td></td>
     <td>SUBTOTAL:</td>
     <td>$<?php echo $subtotal; ?></td>
+    </tr>
+    <tr>
+    <td></td>
+    <td></td>
+    <td>GST:</td>
+    <td>$<?php echo $GST; ?></td>
+    </tr>
+    <tr>
+    <td></td>
+    <td></td>
+    <td>TOTAL:</td>
+    <td>$<?php echo $TOTALPRICE; ?></td>
     </tr>
   
 </table>

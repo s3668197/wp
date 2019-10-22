@@ -1,5 +1,39 @@
+<?php
+ 
+require_once("tools.php");
 
-<!DOCTYPE html PUBLIC "Receipt">
+if (empty($_SESSION)) {
+    
+    header('Location: https://titan.csit.rmit.edu.au/~s3707846/wp/a4/index.php');
+}
+
+
+$receivedname = $_SESSION["cust"]["name"];
+$receivedemail = $_SESSION["cust"]["email"];
+$receivedmobile = $_SESSION["cust"]["mobile"];
+
+$staQuantity = $_SESSION["seats"]["STA"];
+$stpQuantity = $_SESSION["seats"]["STP"];
+$stcQuantity = $_SESSION["seats"]["STC"];
+$fcaQuantity = $_SESSION["seats"]["FCA"];
+$fcpQuantity = $_SESSION["seats"]["FCP"];
+$fccQuantity = $_SESSION["seats"]["FCC"];
+
+$totalForStandardAdult = number_format((float)$staQuantity*14.00, 2, '.', '');
+$totalForStandardConcession = number_format((float)$stpQuantity*12.50, 2, '.', '');
+$totalForStandardChild = number_format((float)$stcQuantity*11.00, 2, '.', '');
+
+$totalForFirstClassAdult = number_format((float)$fcaQuantity*24.00, 2, '.', '');
+$totalForFirstClassConcession = number_format((float)$fcpQuantity*22.50, 2, '.', '');
+$totalForFirstClassChild = number_format((float)$fccQuantity*21.00, 2, '.', '');
+
+$subtotal = number_format((float)$totalForStandardAdult + $totalForStandardConcession + $totalForStandardChild + $totalForFirstClassAdult + $totalForFirstClassConcession + $totalForFirstClassChild, 2, '.', '');
+
+
+ $GST = number_format((float)$subtotal/11, 2, '.', '');
+ $TOTALPRICE = number_format((float)$subtotal+$GST, 2, '.', '');
+ ?>
+<html>
 
 
 <head>
@@ -7,7 +41,7 @@
 	
 	<title>Receipt</title>
 	
-	<link rel='stylesheet' type='text/css' href='css/style.css' />
+	<link rel='stylesheet' type='text/css' href='receiptstyle.css' />
 	
 	
 

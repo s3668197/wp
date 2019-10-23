@@ -1,10 +1,10 @@
 <?php
-session_start();
+
 require_once("tools.php");
  
-    preShow($_SESSION);
+    
     if (count($_POST) > 0) {
-    if ($errorCounter < 2 && $ticketCounter > 0) {
+    if ($errorCounter == 0 && $ticketCounter > 0) {
         $_SESSION = $_POST;
         
        $now = date('d/m h:i');
@@ -353,7 +353,7 @@ require_once("tools.php");
    Personal details<br><br>    
        
     Name:<br> 
-    <input type="text" name="cust[name]" pattern="^[a-zA-Z \-.']{1,100}$">
+    <input type="text" name="cust[name]" pattern="^[a-zA-Z \-.']{1,100}$" value=" <?php echo $name; ?>">
        <span><?php echo $nameErr; ?> </span>
        <br><br>
        
@@ -382,10 +382,15 @@ require_once("tools.php");
     <input type="submit" name="order" value="Order"><br><br>
            
    </form> 
+       
+      <?php preShow($_POST); ?>
+      <?php preShow($_SESSION); ?>
         
    </section>
-           
+                
     </main>
+      
+      
                
 <script>
 window.onscroll = function() {myFunction()};

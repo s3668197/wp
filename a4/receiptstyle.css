@@ -1,0 +1,181 @@
+* { margin: 0; padding: 0; }
+body { font: 14px/1.4 Georgia, serif; }
+#page-wrap { width: 800px; margin: 0 auto; }    
+textarea { border: 0; font: 14px Georgia, Serif; overflow: hidden; resize: none; }
+table { border-collapse: collapse; }
+table td, table th { border: 1px solid black; padding: 10px5px; }
+#header { height: 35px; width: 100%; margin: 20px 0; background: #222; text-align: center; color: white; font: bold 15px Helvetica, Sans-Serif; text-decoration: uppercase; letter-spacing: 20px; padding: 8px 0px; }
+#address { width: 250px; height: 150px; float: left; }
+#customer { overflow: hidden; }
+#logo { text-align: right; float: right; position: relative; margin-top: 25px; border: 1px solid #fff; max-width: 540px; max-height: 100px; overflow: hidden; }
+#logo:hover #logoctr, #logo.edit #logoctr { display: block; text-align: right; line-height: 25px; background: #eee; padding: 0 5px; }
+#logohelp { text-align: left; display: none; font-style: italic; padding: 10px 5px;}
+#customer-title { font-size: 20px; font-weight: bold; float: left; }
+#meta { margin-top: 1px; width: 300px; float: right; }
+#meta td { text-align: right;  }
+#meta td.meta-head { text-align: left; background: #eee; }
+#meta td textarea { width: 100%; height: 20px; text-align: right; }
+#terms { text-align: center; margin: 20px 0 0 0; }
+#terms h5 { text-transform: uppercase; font: 13px Helvetica, Sans-Serif; letter-spacing: 10px; border-bottom: 1px solid black; padding: 0 0 8px 0; margin: 0 0 8px 0; }
+#terms textarea { width: 100%; text-align: center;}
+
+
+.cardWrap {
+    width: 27em;
+    margin: 3em auto;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.card {
+    background: linear-gradient(to bottom, Black 10%, Black 15%, #ecedef 10%, #ecedef 100%);
+    height: 15em;
+    float: left;
+    position: relative;
+    padding: 1em;
+    margin-top: 100px;
+}
+
+.cardLeft {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 16em;
+}
+
+.cardRight {
+    width: 6.5em;
+    border-left: 0.18em dashed #fff;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.cardRight:before,
+.cardRight:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0.9em;
+    height: 0.9em;
+    background: #fff;
+    border-radius: 50%;
+    left: -0.5em;
+}
+
+.cardRight:before {
+    top: -0.4em;
+}
+
+.cardRight:after {
+    bottom: -0.4em;
+}
+
+h1 {
+    font-size: 1.1em;
+    margin-top: 0;
+}
+
+h1 span {
+    font-weight: normal;
+}
+
+.title,
+.name,
+.seat,
+.screen {
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.title h2,
+.name h2,
+.seat h2,
+.screen h2 {
+    font-size: 0.9em;
+    color: #525252;
+    margin: 0;
+}
+
+.title span,
+.name span,
+.seat span,
+.screen span {
+    font-size: 0.7em;
+    color: #a2aeae;
+}
+
+.title {
+    margin: 2em 0 0 0;
+}
+
+.name,
+.seat {
+    margin: 0.7em 0 0 0;
+}
+
+.screen {
+    margin: 0.7em 0 0 1em;
+}
+
+.seat,
+.screen {
+    float: left;
+}
+
+.eye {
+    position: relative;
+    width: 2em;
+    height: 1.5em;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 1em/0.6em;
+    z-index: 1;
+}
+
+.eye:before,
+.eye:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.eye:before {
+    width: 1em;
+    height: 1em;
+    background: black;
+    z-index: 2;
+    left: 8px;
+    top: 4px;
+}
+
+.eye:after {
+    width: 0.5em;
+    height: 0.5em;
+    background: #fff;
+    z-index: 3;
+    left: 12px;
+    top: 8px;
+}
+
+.number {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.number h3 {
+    color: Black;
+    margin: 0.9em 0 0 0;
+    font-size: 1.5em;
+}
+
+.number span {
+    display: block;
+    color: #a2aeae;
+}
+
+.barcode {
+    height: 2em;
+    width: 0;
+    margin: 1.2em 0 0 0.8em;
+    box-shadow: 1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434, 11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434, 22px 0 0 1px #343434, 23px 0 0 1px #343434, 26px 0 0 1px #343434, 30px 0 0 1px #343434, 35px 0 0 1px #343434, 37px 0 0 1px #343434, 41px 0 0 1px #343434, 44px 0 0 1px #343434, 47px 0 0 1px #343434, 51px 0 0 1px #343434, 56px 0 0 1px #343434, 59px 0 0 1px #343434, 64px 0 0 1px #343434, 68px 0 0 1px #343434, 72px 0 0 1px #343434, 74px 0 0 1px #343434, 77px 0 0 1px #343434, 81px 0 0 1px #343434;
+}

@@ -9,12 +9,22 @@ function preShow( $arr, $returnAsString=false ) {
     echo $ret; 
 }
 
+function printMyCode() {
+  $lines = file($_SERVER['SCRIPT_FILENAME']);
+  echo "<pre class='mycode'><ol>";
+  foreach ($lines as $line)
+     echo '<li>'.rtrim(htmlentities($line)).'</li>';
+  echo '</ol></pre>';
+}
+
+
 // Put your PHP functions and modules here
 
 $name = $email = $mobile = $card = $expiry = "";
 $nameErr = $emailErr = $mobileErr = $creditCardErr = $expiryErr = $standardAdultErr = $standardConcessionErr = $standardChildErr = $firstClassAdultErr = $firstClassConcessionErr = $firstClassChildErr = "";
     
- $errorCounter = 0;   
+ $errorCounter = 0;
+ $ticketCounter = 0;
 $standardAdult = $standardConcession = $standardChild = $firstClassAdult = $firstClassConcession = $firstClassChild = "";
 
 if (!empty($_POST)) {
@@ -63,50 +73,49 @@ if (!empty($_POST)) {
     
     $standardAdult = $_POST["seats"]["STA"];
     if (empty($_POST["seats"]["STA"])) {
-        $standardAdultErr =' <span style="color:red">Please enter a valid number</span>';
-        $errorCounter++;
+        $standardAdultErr = ' <span style="color:red">Blank</span>';
     } else {
-        $standardAdultErr = "";
+        $ticketCounter++;
     }
     
     $standardConcession = $_POST["seats"]["STP"];
     if (empty($_POST["seats"]["STP"])) {
-        $standardConcessionErr =' <span style="color:red">Please enter a valid number</span>';
-        $errorCounter++;
+        $standardConcessionErr =' <span style="color:red">Blank</span>';
+        
     } else {
-        $standardConcessionErr = "";
+        $ticketCounter++;
     }
     
     $standardChild = $_POST["seats"]["STC"];
     if (empty($_POST["seats"]["STC"])) {
-        $standardChildErr =' <span style="color:red">Please enter a valid number</span>';
-        $errorCounter++;
+        $standardChildErr =' <span style="color:red">Blank</span>';
+        
     } else {
-        $standardChildErr = "";
+        $ticketCounter++;
     }
     
     $firstClassAdult = $_POST["seats"]["FCA"];
     if (empty($_POST["seats"]["FCA"])) {
-        $firstClassAdultErr =' <span style="color:red">Please enter a valid number</span>';
-        $errorCounter++;
+        $firstClassAdultErr =' <span style="color:red">Blank</span>';
+        
     } else {
-        $firstClassAdultErr = "";
+        $ticketCounter++;
     }
     
     $firstClassConcession = $_POST["seats"]["FCP"];
     if (empty($_POST["seats"]["FCP"])) {
-        $firstClassConcessionErr =' <span style="color:red">Please enter a valid number</span>';
-        $errorCounter++;
+        $firstClassConcessionErr =' <span style="color:red">Blank</span>';
+        
     } else {
-        $firstClassConcessionErr = "";
+        $ticketCounter++;
     }
     
     $firstClassChild = $_POST["seats"]["FCC"];
     if (empty($_POST["seats"]["FCC"])) {
-        $firstClassChildErr =' <span style="color:red">Please enter a valid number</span>';
-        $errorCounter++;
+        $firstClassChildErr =' <span style="color:red">Blank</span>';
+        
     } else {
-        $firstClassChildErr = "";
+        $ticketCounter++;
     }
     
     

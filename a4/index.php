@@ -353,18 +353,18 @@ require_once("tools.php");
    Personal details<br><br>    
        
     Name:<br> 
-    <input type="text" name="cust[name]" pattern="^[a-zA-Z \-.']{1,100}$" value=" <?php echo $name; ?>">
+    <input type="text" name="cust[name]" pattern="^[a-zA-Z \-.']{1,100}$" value="<?php echo $name; ?>">
        <span><?php echo $nameErr; ?> </span>
        <br><br>
        
     Email:<br>
-    <input type="text" name="cust[email]" value=" <?php echo $email; ?>">                                         
+    <input type="text" name="cust[email]" value="<?php echo $email; ?>">                                         
           
        <span><?php echo $emailErr; ?> </span>
     <br><br>
        
     Mobile:<br>
-    <input type="text" name="cust[mobile]" pattern="^(\(04\)|04|\+614)( ?\d){8}$" value=" <?php echo $mobile; ?>">
+    <input type="text" name="cust[mobile]" pattern="^(\(04\)|04|\+614)( ?\d){8}$" value="<?php echo $mobile; ?>">
  
        <span><?php echo $mobileErr; ?> </span>
        <br><br>  
@@ -385,6 +385,8 @@ require_once("tools.php");
        
       <?php preShow($_POST); ?>
       <?php preShow($_SESSION); ?>
+       
+   
         
    </section>
                 
@@ -426,6 +428,6 @@ function myFunction() {
       <div>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</div>
       <div><button id='toggleWireframeCSS' onclick='toggleWireframe()'>Toggle Wireframe CSS</button></div>
     </footer>
-
+<?php printMyCode(); ?>
   </body>
 </html>

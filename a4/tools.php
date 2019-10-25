@@ -72,14 +72,14 @@ if (!empty($_POST)) {
     
     
     $standardAdult = $_POST["seats"]["STA"];
-    if (empty($_POST["seats"]["STA"])) {
+    if ($_POST["seats"]["STA"] < 0 or $_POST["seats"]["STA"] > 10 or empty($_POST["seats"]["STA"])) {
         $standardAdultErr = ' <span style="color:red">Blank</span>';
     } else {
         $ticketCounter++;
     }
     
     $standardConcession = $_POST["seats"]["STP"];
-    if (empty($_POST["seats"]["STP"])) {
+    if ($_POST["seats"]["STP"] < 0 or $_POST["seats"]["STP"] > 10 or empty($_POST["seats"]["STP"])) {
         $standardConcessionErr =' <span style="color:red">Blank</span>';
         
     } else {
@@ -87,7 +87,7 @@ if (!empty($_POST)) {
     }
     
     $standardChild = $_POST["seats"]["STC"];
-    if (empty($_POST["seats"]["STC"])) {
+    if ($_POST["seats"]["STC"] < 0 or $_POST["seats"]["STC"] > 10 or empty($_POST["seats"]["STC"])) {
         $standardChildErr =' <span style="color:red">Blank</span>';
         
     } else {
@@ -95,7 +95,7 @@ if (!empty($_POST)) {
     }
     
     $firstClassAdult = $_POST["seats"]["FCA"];
-    if (empty($_POST["seats"]["FCA"])) {
+    if ($_POST["seats"]["FCA"] < 0 or $_POST["seats"]["FCA"] > 10 or empty($_POST["seats"]["FCA"])) {
         $firstClassAdultErr =' <span style="color:red">Blank</span>';
         
     } else {
@@ -103,7 +103,7 @@ if (!empty($_POST)) {
     }
     
     $firstClassConcession = $_POST["seats"]["FCP"];
-    if (empty($_POST["seats"]["FCP"])) {
+    if ($_POST["seats"]["FCP"] < 0 or $_POST["seats"]["FCP"] > 10 or empty($_POST["seats"]["FCP"])) {
         $firstClassConcessionErr =' <span style="color:red">Blank</span>';
         
     } else {
@@ -111,7 +111,7 @@ if (!empty($_POST)) {
     }
     
     $firstClassChild = $_POST["seats"]["FCC"];
-    if (empty($_POST["seats"]["FCC"])) {
+    if ($_POST["seats"]["FCC"] < 0 or $_POST["seats"]["FCC"] > 10 or empty($_POST["seats"]["FCC"])) {
         $firstClassChildErr =' <span style="color:red">Blank</span>';
         
     } else {
